@@ -1,0 +1,18 @@
+# FastPRReviewer Configuration
+
+# Your Azure DevOps organization name
+organization = "your-organization-name"
+
+# Your project name within the organization
+project = "your-project-name"
+
+# Personal Access Token with Code (Read) and Pull Request (Read & Write) permissions
+# For security, consider using environment variables or a secure vault in production
+personal_access_token = "your-pat-token"
+
+# List of users whose PRs will be automatically approved
+watched_users = [
+    "User Name 1",
+    "User Name 2",
+    # Add more users as needed
+]
