@@ -2,6 +2,11 @@
 
 A tool for automatically reviewing and approving pull requests in Azure DevOps. This utility monitors PRs from specific users and can automatically approve them, saving time and streamlining your team's workflow.
 
+![4cd112f617cacd1db176c96ba35bbf49](https://github.com/user-attachments/assets/0f56b77b-11ef-454f-b454-161e223f8d01)
+
+Fastest PR Reviewer in the south
+
+
 ## Setup Guide
 
 ### 1. Configuration Setup
