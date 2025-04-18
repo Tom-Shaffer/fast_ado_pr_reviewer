@@ -71,6 +71,8 @@ To run the program in the background or as a service, consider using:
 - Linux: Systemd service or Cron job
 - Docker: See the Docker setup instructions below (if applicable)
 
+If you do this, make sure to lower the polling rate in main.rs to make sure you don't trigger throttling or other bad things. By default it's set to poll every second since it's designed to run only for a few minutes
+
 ## Troubleshooting
 
 - If you encounter authentication errors, verify your PAT has not expired and has the correct permissions
