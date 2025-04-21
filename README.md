@@ -2,6 +2,11 @@
 
 A tool for automatically reviewing and approving pull requests in Azure DevOps. This utility monitors PRs from specific users and can automatically approve them, saving time and streamlining your team's workflow.
 
+![4cd112f617cacd1db176c96ba35bbf49](https://github.com/user-attachments/assets/0f56b77b-11ef-454f-b454-161e223f8d01)
+
+Fastest PR Reviewer in the south
+
+
 ## Setup Guide
 
 ### 1. Configuration Setup
@@ -70,6 +75,8 @@ To run the program in the background or as a service, consider using:
 - Windows: Task Scheduler
 - Linux: Systemd service or Cron job
 - Docker: See the Docker setup instructions below (if applicable)
+
+If you do this, make sure to lower the polling rate in main.rs to make sure you don't trigger throttling or other bad things. By default it's set to poll every second since it's designed to run only for a few minutes
 
 ## Troubleshooting
 
