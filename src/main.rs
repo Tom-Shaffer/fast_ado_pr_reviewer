@@ -35,6 +35,10 @@ struct Args {
     /// Polling interval in seconds
     #[clap(short, long, default_value = "1")]
     interval: u64,
+    
+    /// Users to watch for PRs (overrides config file)
+    #[clap(trailing_var_arg = true)]
+    watched_users: Vec<String>,
 }
 
 #[tokio::main]
@@ -48,6 +52,12 @@ async fn main() -> Result<()> {
     // Load configuration
     let mut config = AppConfig::from_file(&args.config)
         .context("Failed to load configuration")?;
+    
+    // Override watched users with CLI arguments if provided
+    if !args.watched_users.is_empty() {
+        info!("Overriding watched users from config with CLI arguments");
+        config.watched_users = args.watched_users;
+    }
     
     // Create Azure DevOps client
     let ado_client = AzureDevOpsClient::new(
@@ -65,10 +75,19 @@ async fn main() -> Result<()> {
     info!("Starting FastPRReviewer bot");
     info!("Organization: {}", config.organization);
     info!("Project: {}", config.project);
-    info!("Watching PRs from {} users", config.watched_users.len());
     info!("Polling interval: {} seconds", args.interval);
     if let Some(reviewer_id) = &config.reviewer_id {
         info!("Using reviewer ID: {}", reviewer_id);
+    }
+    
+    // Log who we're watching for PRs
+    if !config.watched_users.is_empty() {
+        info!("👀 Watching PRs from {} users:", config.watched_users.len());
+        for user in &config.watched_users {
+            info!("  • {}", user);
+        }
+    } else {
+        warn!("No users being watched! Add users to config.toml or specify them as command line arguments.");
     }
     
     // Create a channel to signal shutdown

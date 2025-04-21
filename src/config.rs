@@ -9,6 +9,7 @@ pub struct AppConfig {
     pub organization: String,
     pub project: String,
     pub personal_access_token: String,
+    #[serde(default)]
     pub watched_users: Vec<String>,
     #[serde(default)]
     pub reviewer_id: Option<String>,
@@ -45,9 +46,6 @@ impl AppConfig {
             return Err(anyhow::anyhow!("Personal access token cannot be empty"));
         }
         
-        if config.watched_users.is_empty() {
-            return Err(anyhow::anyhow!("Watched users list cannot be empty"));
-        }
         
         Ok(config)
     }
